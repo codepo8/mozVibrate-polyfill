@@ -8,3 +8,5 @@ Simply include the polyfill in your development version of your app and when moz
 On devices that support mozVibrate, you get the real thing. This allows you to debug code without needing any extra logging. 
 
 You can try it out here: http://codepo8.github.io/mozVibrate-polyfill/
+
+*New*: added W3C compliant alias and option to stop vibration with empty parameter
