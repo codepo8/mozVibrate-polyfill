@@ -1,6 +1,7 @@
 /*
   mozVibrate polyfill by Chris Heilmann (@codepo8)
   simulates the Vibration API of Firefox OS:
+  
   https://bugzilla.mozilla.org/show_bug.cgi?id=679966
 */
 
