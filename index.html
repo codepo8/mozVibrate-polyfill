@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>A polyfill for mozVibrate/vibrate</title>
+<title>A polyfill for vibrate/mozVibrate</title>
 <style type="text/css">
   body {
     font-family: "open sans", helvetica, sans-serif;
@@ -27,7 +27,7 @@
 </head>
 <body>
 <section>
-<h1>mozVibrate polyfill</h1>
+<h1>Web Vibrate polyfill</h1>
 
 <p>
   <a href="https://github.com/codepo8/mozVibrate-polyfill">Fork on GitHub</a>
@@ -37,11 +37,11 @@
 
 <p>Test by activating the buttons below:</p>
 
+<button onclick="navigator.vibrate([1000,2000,1000,100,1000])">navigator.vibrate([1000,2000,1000,100,1000])</button>
+<button onclick="navigator.vibrate(1000)">navigator.vibrate(1000)</button>
 <button onclick="navigator.mozVibrate([1000,2000,1000,100,1000])">navigator.mozVibrate([1000,2000,1000,100,1000])</button>
 <button onclick="navigator.mozVibrate(1000)">navigator.mozVibrate(1000)</button>
 <button onclick="navigator.mozVibrate(0)">navigator.mozVibrate(0)</button>
-<button onclick="navigator.vibrate([1000,2000,1000,100,1000])">navigator.vibrate([1000,2000,1000,100,1000])</button>
-<button onclick="navigator.vibrate(1000)">navigator.vibrate(1000)</button>
 
 
 </section>

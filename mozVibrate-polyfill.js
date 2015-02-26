@@ -1,5 +1,5 @@
 /*
-  mozVibrate polyfill by Chris Heilmann (@codepo8)
+  vibrate/mozVibrate polyfill by Chris Heilmann (@codepo8)
   simulates the Vibration API of Firefox OS:
   
   https://bugzilla.mozilla.org/show_bug.cgi?id=679966
@@ -53,4 +53,80 @@ if (!navigator.mozVibrate || !navigator.vibrate) {
   navigator.vibrate = navigator.mozVibrate;
 }
 
+})();
+
+
+(function(){
+
+  if (document.querySelector) {
+
+    var rollover = document.querySelector('#rollover');
+    rollover.className = 'js';
+
+    var images = rollover.querySelectorAll('img');
+    var all = images.length;
+    var width = rollover.offsetWidth;
+    var ox = rollover.offsetLeft;
+    var boundarywidth = width / all;
+    var current = 0;
+    var x = 0;
+    var index = 0;
+    var touched = false;
+
+    setcurrent = function(index) {
+      if (images[index]) {
+        images[current].className = '';
+        images[index].className = 'current';
+        current = index;
+      }
+    };
+
+    findindex = function(x) {
+      index = parseInt((x - ox) / boundarywidth, 10);
+      if (index !== current) {
+        setcurrent(index);
+      }
+    }
+
+    rollover.addEventListener('mousemove', function(ev) {
+      if (!touched) {
+        findindex(ev.clientX);
+      }
+    }, false);
+
+    rollover.addEventListener('touchstart', function(ev) {
+      touched = true;
+    }, false);
+
+    rollover.addEventListener('touchend', function(ev) {
+      touched = false;
+    }, false);
+
+    rollover.addEventListener('touchmove', function(ev) {
+      if (touched) {
+        findindex(ev.changedTouches[0].clientX);
+        ev.preventDefault();
+      }
+    }, false);
+
+    rollover.addEventListener('keydown', function(ev) {
+      var key = ev.char || ev.key || ev.which;
+      if (key === 37) { index = index - 1;}
+      if (key === 39) { index = index + 1;}
+      if (index < 0) {index = 0;}
+      if (index > all - 1) {index = all - 1;}
+      setcurrent(index);
+    }, false);
+
+    if (rollover.querySelector('.current')) {
+      for (var i=0;i<all;i++) {
+        if (images[i].className === 'current') {
+          current = i;
+          break;
+        }
+      }
+    } else {
+      setcurrent(current);
+    }
+  }
 })();

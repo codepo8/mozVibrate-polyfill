@@ -1,4 +1,4 @@
-mozVibrate polyfill
+vibrate/mozVibrate polyfill
 ===================
 
 This is nothing special but might be very useful for debugging FirefoxOS applications in the emulator or on your Desktop. 
